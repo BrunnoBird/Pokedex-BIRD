@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.model.Pokemon
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.model.PokemonResult
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.repository.PokemonRepository
+import br.com.brunnogonzalezanjos.pokedexdesafioegsys.utils.extractIdPokemon
+import br.com.brunnogonzalezanjos.pokedexdesafioegsys.utils.randomPokemonById
 
 class PokemonListViewModel(private val repository: PokemonRepository) : ViewModel() {
     var pokemons = MutableLiveData<List<Pokemon?>>()
@@ -42,11 +44,35 @@ class PokemonListViewModel(private val repository: PokemonRepository) : ViewMode
         }
     }
 
-    private fun extractIdPokemon(pokemonResult: PokemonResult): Long {
-        val number = pokemonResult.url
-            .replace("https://pokeapi.co/api/v2/pokemon/", "")
-            .replace("/", "").toLong()
-        return number
+    fun randomPokemon(): Pokemon? {
+
+        if (!pokemons.value.isNullOrEmpty()) {
+            pokemons.value.let {
+                it?.let {
+                    val randomPokemon = randomPokemonById(it)
+                    return randomPokemon
+                }
+            }
+        }
+        return null
+    }
+
+    fun filterByName(name: CharSequence): List<Pokemon?>? {
+
+        val listFiltered = pokemons.value?.filter {
+            it?.name?.contains(name.toString().lowercase()) ?: false
+        }
+        return listFiltered
+    }
+
+    fun filterByType(pokemonType: CharSequence): List<Pokemon?>? {
+
+        val listFiltered = pokemons.value?.filter {
+            val typesPokemon = it?.types?.map { type -> type.name }
+            typesPokemon?.map { type -> type }?.contains(pokemonType.toString().lowercase())
+                ?: false
+        }
+        return listFiltered
     }
 
 }

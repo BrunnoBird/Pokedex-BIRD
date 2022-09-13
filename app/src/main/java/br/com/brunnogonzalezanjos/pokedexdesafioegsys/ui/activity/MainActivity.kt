@@ -1,13 +1,12 @@
 package br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.RadioButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.R
@@ -31,13 +30,50 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         listeners()
-        findPokemons()
+        fetchPokemons()
     }
 
     private fun listeners() {
         searchPokemonListener()
         fabListener()
         radioButtonListener()
+    }
+
+    private fun fetchPokemons() {
+        pb_load_pokemons.visibility = View.VISIBLE
+        viewModel.pokemons.observe(this, Observer {
+            loadRecyclerView(it as MutableList<Pokemon?>)
+        })
+    }
+
+    private fun loadRecyclerView(
+        pokemons: MutableList<Pokemon?>,
+    ) {
+        activity_list_pokemon_recyclerview.adapter = PokemonListAdapter(
+            this,
+            item = pokemons,
+            onItemClick = this::openPokemonDetails
+        )
+        pb_load_pokemons.visibility = View.GONE
+    }
+
+    private fun fabListener() {
+        fab_random_pokemon.setOnClickListener {
+            randomPokemon()
+        }
+    }
+
+    private fun randomPokemon() {
+        val randomPokemon = viewModel.randomPokemon()
+        randomPokemon?.let {
+            openPokemonDetails(randomPokemon)
+        }
+    }
+
+    private fun openPokemonDetails(it: Pokemon) {
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra(POKEMON_ID, it.number)
+        startActivity(intent)
     }
 
     private fun radioButtonListener() {
@@ -55,86 +91,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun fabListener() {
-        fab_random_pokemon.setOnClickListener {
-            randomPokemon()
-        }
-    }
-
-    private fun randomPokemon() {
-        if (viewModel.pokemons.value?.isNotEmpty() == true) {
-            viewModel.pokemons.observe(this, Observer {
-                it?.let {
-                    val randomPokemon = randomPokemonById(it)
-                    randomPokemon?.let {
-                        openPokemonDetails(randomPokemon)
-                    }
-                }
-            })
-        } else {
-            return
-        }
-    }
-
-    private fun randomPokemonById(it: List<Pokemon?>): Pokemon? {
-        val randomPokemonId = (0..it.size).random()
-        val randomPokemon = it[randomPokemonId]
-        return randomPokemon
-    }
-
-    private fun loadRecyclerView(
-        pokemons: MutableList<Pokemon?>,
-    ) {
-        activity_list_pokemon_recyclerview.adapter = PokemonListAdapter(
-            this,
-            item = pokemons,
-            onItemClick = this::openPokemonDetails
-        )
-        pb_load_pokemons.visibility = View.GONE
-    }
-
-    private fun openPokemonDetails(it: Pokemon) {
-        val intent = Intent(this, DetailsActivity::class.java)
-        intent.putExtra(POKEMON_ID, it.number)
-        startActivity(intent)
-    }
-
-    private fun findPokemons() {
-        pb_load_pokemons.visibility = View.VISIBLE
-        viewModel.pokemons.observe(this, Observer {
-            loadRecyclerView(it as MutableList<Pokemon?>)
-        })
-    }
-
     private fun searchPokemonListener() {
         input_search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-
+                return
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(name: CharSequence?, start: Int, before: Int, count: Int) {
                 when (typeFilter) {
                     FILTER_TYPE_NAME -> {
-                        val pokemons =
-                            viewModel.pokemons.value?.filter {
-                                it?.name?.contains(s.toString().lowercase()) ?: false
+                        name?.let {
+                            val filteredPokemon = viewModel.filterByName(name)
+                            filteredPokemon?.let {
+                                loadRecyclerView(it.toMutableList())
                             }
-                        pokemons?.let {
-                            loadRecyclerView(it.toMutableList())
                         }
                     }
                     FILTER_TYPE_TYPE -> {
-                        val pokemons =
-                            viewModel.pokemons.value?.filter {
-                                val typesPoke = it?.types?.map { type -> type.name }
-                                typesPoke?.map { type -> type }
-                                    ?.contains(s.toString().lowercase()) ?: false
+                        name?.let {
+                            val filteredPokemons = viewModel.filterByType(name)
+                            filteredPokemons?.let {
+                                loadRecyclerView(it.toMutableList())
                             }
-                        pokemons?.let {
-                            loadRecyclerView(it.toMutableList())
                         }
                     }
                 }

@@ -1,8 +1,8 @@
 package br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.R
@@ -11,7 +11,6 @@ import br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel.DetailsViewMo
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel.factory.DetailsViewModelFactory
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_details.*
-import kotlinx.android.synthetic.main.activity_details.view.*
 import kotlinx.android.synthetic.main.toolbar_back.*
 
 class DetailsActivity : AppCompatActivity() {
@@ -63,7 +62,6 @@ class DetailsActivity : AppCompatActivity() {
                     tvPokemonDetatilElement2.visibility = View.GONE
                 }
             }
-
         })
     }
 }
