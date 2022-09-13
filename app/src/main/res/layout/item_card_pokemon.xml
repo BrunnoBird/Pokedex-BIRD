@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivPokemon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/pokemon_photo_item_card_content_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/charmander" />
+
+        <TextView
+            android:id="@+id/tvNumberPokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/smoke"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivPokemon"
+            tools:text="N˚ 001" />
+
+        <TextView
+            android:id="@+id/tvNamePokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvNumberPokemon"
+            app:layout_constraintTop_toBottomOf="@+id/tvNumberPokemon"
+            tools:text="Charmander" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvNamePokemon"
+            app:layout_constraintTop_toBottomOf="@+id/tvNamePokemon">
+
+            <TextView
+                android:id="@+id/tvElementPokemon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/rounded_corner_text_view"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="50dp"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/lightRed"
+                android:textSize="12sp"
+                tools:text="Fire" />
+
+            <TextView
+                android:id="@+id/tvElementPokemon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/rounded_corner_text_view"
+                android:fontFamily="@font/roboto_bold"
+                android:minWidth="50dp"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/lightRed"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="Fire" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

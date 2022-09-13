@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".ui.activity.DetailsActivity">
+
+    <include
+        android:id="@+id/pokemonDetailsToolbarBack"
+        layout="@layout/toolbar_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPokemonDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/lighterGrey"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pokemonDetailsToolbarBack">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvNumberPokemonDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="#001" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/weight_details"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvWeightPokemonDetailsValue"
+                app:layout_constraintEnd_toStartOf="@+id/tvWeightPokemonDetailsValue"
+                app:layout_constraintTop_toTopOf="@+id/tvWeightPokemonDetailsValue" />
+
+            <TextView
+                android:id="@+id/tvWeightPokemonDetailsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNumberPokemonDetail"
+                tools:text="90.5 KG" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/height_details"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvHeightPokemonDetailsValue"
+                app:layout_constraintEnd_toStartOf="@id/tvHeightPokemonDetailsValue"
+                app:layout_constraintTop_toTopOf="@+id/tvHeightPokemonDetailsValue" />
+
+            <TextView
+                android:id="@+id/tvHeightPokemonDetailsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvWeightPokemonDetailsValue"
+                app:layout_constraintTop_toBottomOf="@+id/tvWeightPokemonDetailsValue"
+                tools:text="1.0 M" />
+
+
+            <ImageView
+                android:id="@+id/ivPokemonImageDetail"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@string/pokemon_photo_content_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@drawable/charmander" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvPokemonNameDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvPokemonDetail"
+        tools:text="Charmander" />
+
+    <LinearLayout
+        android:id="@+id/linearPokemonDetailElement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPokemonNameDetail">
+
+        <TextView
+            android:id="@+id/tvPokemonDetatilElement"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_text_view"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="8dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Fire" />
+
+        <TextView
+            android:id="@+id/tvPokemonDetatilElement2"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_text_view"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="8dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Fire" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvPokemonDetailHp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginHorizontal="8dp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="8dp"
+        android:text="@string/hp_label_pokemon_defatils"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tvPokemonDetailHpPoints"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearPokemonDetailElement" />
+
+    <TextView
+        android:id="@+id/tvPokemonDetailHpPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="36dp"
+        android:layout_marginVertical="16dp"
+        android:alpha="0.6"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPokemonDetailHp"
+        app:layout_constraintEnd_toStartOf="@+id/progressBarPokemonDetailHp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvPokemonDetailHp"
+        app:layout_constraintTop_toTopOf="@+id/tvPokemonDetailHp"
+        tools:text="43" />
+
+    <ProgressBar
+        android:id="@+id/progressBarPokemonDetailHp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginVertical="16dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="43"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPokemonDetailHpPoints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvPokemonDetailHpPoints"
+        app:layout_constraintTop_toTopOf="@+id/tvPokemonDetailHpPoints" />
+
+    <TextView
+        android:id="@+id/tvPokemonDetailAtk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="8dp"
+        android:text="@string/attack_label_pokemon_details"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvPokemonDetailHp"
+        app:layout_constraintTop_toBottomOf="@+id/tvPokemonDetailHp" />
+
+    <TextView
+        android:id="@+id/tvPokemonDetailAtkPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:alpha="0.6"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvPokemonDetailHpPoints"
+        app:layout_constraintTop_toBottomOf="@+id/tvPokemonDetailHpPoints"
+        tools:text="60" />
+
+    <ProgressBar
+        android:id="@+id/progressBarPokemonDetailAtk"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:layout_marginVertical="16dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="60"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPokemonDetailAtkPoints"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarPokemonDetailHp"
+        app:layout_constraintStart_toStartOf="@+id/progressBarPokemonDetailHp"
+        app:layout_constraintTop_toTopOf="@+id/tvPokemonDetailAtkPoints" />
+
+    <TextView
+        android:id="@+id/tvPokemonDetailDef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="8dp"
+        android:text="@string/defense_label_pokemon_details"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvPokemonDetailAtk"
+        app:layout_constraintTop_toBottomOf="@+id/tvPokemonDetailAtk" />
+
+    <TextView
+        android:id="@+id/tvPokemonDetailDefPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:alpha="0.6"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvPokemonDetailAtkPoints"
+        app:layout_constraintTop_toBottomOf="@+id/tvPokemonDetailAtkPoints"
+        tools:text="80" />
+
+    <ProgressBar
+        android:id="@+id/progressBarPokemonDetailDef"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:layout_marginVertical="16dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="80"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPokemonDetailDefPoints"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarPokemonDetailAtk"
+        app:layout_constraintStart_toStartOf="@+id/progressBarPokemonDetailAtk"
+        app:layout_constraintTop_toTopOf="@+id/tvPokemonDetailDefPoints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
