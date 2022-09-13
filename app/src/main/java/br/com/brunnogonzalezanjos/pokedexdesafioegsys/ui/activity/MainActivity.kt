@@ -62,10 +62,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomPokemon() {
-        hasPokemon()
-    }
-
-    private fun hasPokemon() {
         if (viewModel.pokemons.value?.isNotEmpty() == true) {
             viewModel.pokemons.observe(this, Observer {
                 it?.let {

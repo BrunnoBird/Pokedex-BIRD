@@ -1,6 +1,5 @@
 package br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel.factory
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.repository.PokemonRepository
