@@ -58,22 +58,28 @@ class PokemonListViewModel(private val repository: PokemonRepository) : ViewMode
         return null
     }
 
-    fun filterByName(name: CharSequence): List<Pokemon?>? {
+    fun filterByName(name: CharSequence): List<Pokemon?> {
 
         val listFiltered = pokemons.value?.filter {
             it?.name?.contains(name.toString().lowercase()) ?: false
         }
-        return listFiltered
+        listFiltered?.let {
+            return it
+        }
+        return listOf<Pokemon>()
     }
 
-    fun filterByType(pokemonType: CharSequence): List<Pokemon?>? {
+    fun filterByType(pokemonType: CharSequence): List<Pokemon?> {
 
         val listFiltered = pokemons.value?.filter {
             val typesPokemon = it?.types?.map { type -> type.name }
             typesPokemon?.map { type -> type }?.contains(pokemonType.toString().lowercase())
                 ?: false
         }
-        return listFiltered
+        listFiltered?.let {
+            return it
+        }
+        return listOf<Pokemon>()
     }
 
 }

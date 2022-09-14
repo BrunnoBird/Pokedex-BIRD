@@ -4,8 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.R
+import br.com.brunnogonzalezanjos.pokedexdesafioegsys.databinding.ItemCardPokemonBinding
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.model.Pokemon
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_details.view.*
@@ -18,12 +21,11 @@ class PokemonListAdapter(
 ) : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val createdView = LayoutInflater.from(context)
-            .inflate(
-                R.layout.item_card_pokemon,
-                parent,
-                false
-            )
+        val createdView = ItemCardPokemonBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder(createdView)
     }
 
@@ -34,12 +36,13 @@ class PokemonListAdapter(
 
     override fun getItemCount() = item.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: ItemCardPokemonBinding) :
+        RecyclerView.ViewHolder(itemView.root) {
 
         private lateinit var pokemon: Pokemon
 
         init {
-            itemView.setOnClickListener {
+            itemView.root.setOnClickListener {
                 if (::pokemon.isInitialized) {
                     onItemClick(pokemon)
                 }
@@ -47,7 +50,6 @@ class PokemonListAdapter(
         }
 
         fun binding(item: Pokemon?) {
-
             item?.let { it ->
                 this.pokemon = item
                 Glide.with(itemView.context).load(it.imageUrl).into(itemView.ivPokemon)

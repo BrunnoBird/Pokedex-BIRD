@@ -9,7 +9,8 @@
     android:clipToPadding="false"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:id="@+id/cvPokemonItem">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
