@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_card_pokemon.view.*
 
 class PokemonListAdapter(
     private val context: Context,
-    private val item: MutableList<Pokemon?> = mutableListOf(),
+    private val item: List<Pokemon?> = listOf<Pokemon>(),
     var onItemClick: (pokemon: Pokemon) -> Unit = {}
 ) : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 

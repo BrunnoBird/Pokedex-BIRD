@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         searchPokemonListener()
         fabListener()
         radioButtonListener()
+        closeKeyboard()
     }
 
     private fun fetchPokemons() {
@@ -122,5 +125,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        input_search.onEditorAction(EditorInfo.IME_ACTION_DONE)
+    }
+
+    private fun closeKeyboard() {
+        activity_main_root.setOnClickListener {
+            hideKeyboard(it)
+        }
+    }
+
+    fun hideKeyboard(view: View) {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+        input_search.clearFocus()
     }
 }

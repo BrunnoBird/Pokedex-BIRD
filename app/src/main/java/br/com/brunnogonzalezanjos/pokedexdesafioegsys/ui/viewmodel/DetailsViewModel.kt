@@ -1,24 +1,26 @@
 package br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.model.Pokemon
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.repository.PokemonRepository
 
 class DetailsViewModel(id: Long, private val repository: PokemonRepository) : ViewModel() {
-    var pokemon = MutableLiveData<Pokemon?>()
+    private var _pokemon = MutableLiveData<Pokemon?>()
+    val pokemon: LiveData<Pokemon?> = _pokemon
 
     init {
-        Thread(Runnable {
+        Thread {
             getPokemonById(id)
-        }).start()
+        }.start()
     }
 
     private fun getPokemonById(id: Long) {
         val pokemonApiResult = repository.getPokemon(id)
 
         pokemonApiResult?.let {
-            pokemon.postValue(
+            _pokemon.postValue(
                 Pokemon(
                     number = it.id,
                     weight = it.weight,

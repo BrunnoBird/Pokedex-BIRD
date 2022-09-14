@@ -1,27 +1,28 @@
 package br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.model.Pokemon
-import br.com.brunnogonzalezanjos.pokedexdesafioegsys.model.PokemonResult
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.repository.PokemonRepository
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.utils.extractIdPokemon
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.utils.randomPokemonById
 
 class PokemonListViewModel(private val repository: PokemonRepository) : ViewModel() {
-    var pokemons = MutableLiveData<List<Pokemon?>>()
+    private var _pokemons = MutableLiveData<List<Pokemon?>>()
+    val pokemons: LiveData<List<Pokemon?>> = _pokemons
 
     init {
-        Thread(Runnable {
+        Thread {
             loadPokemons()
-        }).start()
+        }.start()
     }
 
     private fun loadPokemons() {
         val pokemonsApiResult = repository.listPokemons()
 
         pokemonsApiResult?.results?.let {
-            pokemons.postValue(it.map { pokemonResult ->
+            _pokemons.postValue(it.map { pokemonResult ->
                 val number = extractIdPokemon(pokemonResult)
 
                 val pokemonApiResult = repository.getPokemon(number)
