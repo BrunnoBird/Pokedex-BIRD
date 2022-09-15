@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Pokédex Desafio Egsys</string>
+    <string name="app_name">Pokédex Desafio</string>
     <string name="label_search">Search pokémon</string>
-    <string name="main_acitivity_app_name">Poké-EGSYS</string>
+    <string name="main_acitivity_app_name">Poké-BIRD</string>
     <string name="app_logo_content_description">App logo</string>
     <string name="pokemon_photo_content_description">Pokémon photo</string>
     <string name="hp_label_pokemon_defatils">HP</string>
@@ -11,7 +11,7 @@
     <string name="fab_main_content_descritpion">Button to draw random pokémon</string>
     <string name="back_button_toolbar_content_description">Back screen button</string>
     <string name="logo_app_splash_content_description">App logo</string>
-    <string name="label_app_name_splash">Poké-EGSYS</string>
+    <string name="label_app_name_splash">Poké-BIRD</string>
     <string name="weight_details">Weight:</string>
     <string name="height_details">Height:</string>
     <string name="type_filter_name">Name</string>

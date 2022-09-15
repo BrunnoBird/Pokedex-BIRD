@@ -1,21 +1,15 @@
 package br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.recyclerview
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import br.com.brunnogonzalezanjos.pokedexdesafioegsys.R
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.databinding.ItemCardPokemonBinding
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.model.Pokemon
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_details.view.*
 import kotlinx.android.synthetic.main.item_card_pokemon.view.*
 
 class PokemonListAdapter(
-    private val context: Context,
     private val item: List<Pokemon?> = listOf<Pokemon>(),
     var onItemClick: (pokemon: Pokemon) -> Unit = {}
 ) : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {

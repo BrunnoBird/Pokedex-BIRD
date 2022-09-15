@@ -10,7 +10,6 @@ data class Pokemon(
     var weight: Int,
     var height: Int,
 ) {
-    val formattedName = name.replaceFirstChar { it.uppercase() }
     val formattedNumber = number.toString().padStart(3, '0')
     val imageUrl = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/$formattedNumber.png"
 }

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.databinding.ActivityMainBinding
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.model.Pokemon
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.repository.PokemonRepository
+import br.com.brunnogonzalezanjos.pokedexdesafioegsys.retrofit.AppRetrofit
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.recyclerview.PokemonListAdapter
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel.PokemonListViewModel
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel.factory.PokemonListViewModelFactory
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private var typeFilter: String = FILTER_TYPE_NAME
     private val viewModel by lazy {
-        val repository = PokemonRepository
+        val service = AppRetrofit().pokemonService
+        val repository = PokemonRepository(service)
         val factory = PokemonListViewModelFactory(repository)
         ViewModelProvider(this, factory).get(PokemonListViewModel::class.java)
     }
@@ -54,7 +56,6 @@ class MainActivity : AppCompatActivity() {
         pokemons: MutableList<Pokemon?>,
     ) {
         binding.activityListPokemonRecyclerview.adapter = PokemonListAdapter(
-            this,
             item = pokemons,
             onItemClick = this::openPokemonDetails
         )

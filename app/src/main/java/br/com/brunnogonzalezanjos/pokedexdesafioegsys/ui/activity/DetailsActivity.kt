@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.databinding.ActivityDetailsBinding
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.repository.PokemonRepository
+import br.com.brunnogonzalezanjos.pokedexdesafioegsys.retrofit.AppRetrofit
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel.DetailsViewModel
 import br.com.brunnogonzalezanjos.pokedexdesafioegsys.ui.viewmodel.factory.DetailsViewModelFactory
 import com.bumptech.glide.Glide
@@ -19,7 +20,8 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private val viewModel by lazy {
-        val repository = PokemonRepository
+        val service = AppRetrofit().pokemonService
+        val repository = PokemonRepository(service)
         val factory = DetailsViewModelFactory(pokemonId, repository)
         ViewModelProvider(this, factory).get(DetailsViewModel::class.java)
     }
@@ -39,8 +41,14 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun binding() {
+
+
         viewModel.pokemon.observe(this, Observer {
+            binding.pbLoadPokemons.visibility = View.VISIBLE
+
             it?.let {
+                binding.pbLoadPokemons.visibility = View.GONE
+
                 Glide.with(binding.ivPokemonImageDetail.context).load(it.imageUrl)
                     .into(binding.ivPokemonImageDetail)
                 binding.tvPokemonNameDetail.text = it.name.replaceFirstChar { it.uppercase() }
